@@ -1,0 +1,28 @@
+<resources>
+    <plurals name="photos">
+        <item quantity="zero">No photos yet</item>
+        <item quantity="one">photo</item>
+        <item quantity="two">photos</item>
+        <item quantity="few">photos</item>
+        <item quantity="many">photos</item>
+        <item quantity="other">photos</item>
+    </plurals>
+
+    <plurals name="friends">
+        <item quantity="zero">No friends yet</item>
+        <item quantity="one">friend</item>
+        <item quantity="two">friends</item>
+        <item quantity="few">friends</item>
+        <item quantity="many">friends</item>
+        <item quantity="other">friends</item>
+    </plurals>
+
+    <plurals name="stars">
+        <item quantity="zero">No stars yet</item>
+        <item quantity="one">star</item>
+        <item quantity="two">stars</item>
+        <item quantity="few">stars</item>
+        <item quantity="many">stars</item>
+        <item quantity="other">stars</item>
+    </plurals>
+</resources>

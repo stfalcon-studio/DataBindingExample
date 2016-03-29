@@ -1,0 +1,7 @@
+<resources>
+    <style name="FAB">
+        <item name="android:layout_margin">16dp</item>
+        <item name="android:clickable">true</item>
+        <item name="borderWidth">0dp</item>
+    </style>
+</resources>

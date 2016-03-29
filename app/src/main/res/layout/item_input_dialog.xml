@@ -1,0 +1,19 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="text"
+            type="com.troy379.databindingexample.binding.fields.ObservableString"/>
+    </data>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primary_text"
+        android:hint="@string/dialog_status_text"
+        android:text="@{text}"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <!-- android:theme is for color -->
+
+</layout>

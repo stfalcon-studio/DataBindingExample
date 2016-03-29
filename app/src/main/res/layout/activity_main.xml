@@ -1,0 +1,190 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.troy379.databindingexample.ui.activities.main.ProfileViewModel" />
+    </data>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:title="@{@string/profile(viewModel.user.name)}"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:paddingTop="@dimen/activity_horizontal_margin"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:paddingEnd="@dimen/activity_horizontal_margin"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/avatarLayout"
+                    android:layout_width="@dimen/avatar_size"
+                    android:layout_height="@dimen/avatar_size">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="@dimen/avatar_size"
+                        android:layout_height="@dimen/avatar_size"
+                        android:src="@{viewModel.user.photo}"/>
+
+                    <View
+                        android:layout_width="@dimen/indicator_size"
+                        android:layout_height="@dimen/indicator_size"
+                        android:layout_marginEnd="@dimen/indicator_margin"
+                        android:layout_marginTop="@dimen/indicator_margin"
+                        android:layout_alignParentEnd="true"
+                        android:background="@{viewModel.isOnline.get ? @drawable/shape_online : @drawable/shape_empty}"/>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/avatarLayout"
+                    android:layout_marginStart="@dimen/activity_vertical_margin"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.user.name + ' ' + viewModel.user.surname}"
+                        style="@style/NameTextView"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.status}"
+                        style="@style/StatusTextView"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="@dimen/activity_horizontal_margin_half" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <include
+                    layout="@layout/item_counter"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:title="@{@plurals/photos(viewModel.user.counters.photos)}"
+                    app:count="@{viewModel.user.counters.photos}"/>
+
+                <include
+                    layout="@layout/item_counter"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:title="@{@plurals/friends(viewModel.friendsCount)}"
+                    app:count="@{viewModel.friendsCount}"/>
+
+                <include
+                    layout="@layout/item_counter"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:title="@{@plurals/stars(viewModel.starsCount)}"
+                    app:count="@{viewModel.starsCount}"/>
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="@dimen/activity_horizontal_margin_half" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/message"
+                    android:theme="@style/AccentButton"
+                    app:onClick="@{viewModel.showDevMessage}"/>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:visibility="@{viewModel.isLoaded.get}">
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/add_as_friend"
+                        android:textColor="@android:color/white"
+                        android:visibility="@{!viewModel.isFriend.get}"
+                        android:theme="@style/AccentButton"
+                        app:onClick="@{viewModel.changeFriendshipStatus}"/>
+
+                    <com.troy379.databindingexample.ui.custom.CenteredIconButton
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/already_friends"
+                        android:textColor="@color/primary"
+                        android:drawableStart="@drawable/selector_ic_check"
+                        android:drawablePadding="@dimen/activity_vertical_margin_half"
+                        android:visibility="@{viewModel.isFriend.get}"
+                        app:onClick="@{viewModel.changeFriendshipStatus}"
+                        style="@style/Widget.AppCompat.Button.Borderless"/>
+
+                </RelativeLayout>
+
+                <ProgressBar
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/small_progressbar_size"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:visibility="@{!viewModel.isLoaded.get}"/>
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:configuration="@{viewModel.recyclerConfiguration}"/>
+
+        </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            app:srcCompat="@drawable/ic_edit"
+            app:layout_behavior="com.troy379.databindingexample.ui.custom.ScrollAwareFABBehavior"
+            app:onClick="@{viewModel.edit}"
+            style="@style/FAB"/>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</layout>

@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">DataBinding Example</string>
+    <item name="bound_observable" type="id" />
+
+    <string name="message">Message</string>
+    <string name="already_friends">Friends</string>
+    <string name="add_as_friend">Make friends</string>
+
+    <string name="dialog_status_text">What\'s on your mind?</string>
+
+    <string name="dev_message">This feature isn\'t available.</string>
+
+    <string name="profile" formatted="false">%s profile</string>
+    <string name="photo_message" formatted="false">Item #%d was clicked!</string>
+</resources>

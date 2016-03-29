@@ -1,0 +1,24 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="url"
+            type="java.lang.String" />
+    </data>
+
+    <com.troy379.databindingexample.ui.custom.SquareRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/photo_item_padding">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@{url}"/>
+
+    </com.troy379.databindingexample.ui.custom.SquareRelativeLayout>
+
+</layout>
