@@ -1,6 +1,6 @@
 # DataBindingExample
 
-Sample project for the https://stfalcon.com/en/blog/post/faster-android-apps-with-databinding blogpost
+This is the sample project related to the "[DataBinding: how to develop Android apps faster](https://stfalcon.com/en/blog/post/faster-android-apps-with-databinding)" blogpost.
 
 ### License
 
